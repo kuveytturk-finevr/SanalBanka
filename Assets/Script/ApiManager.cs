@@ -10,8 +10,8 @@ using System.Threading;
 
 public class ApiManager : MonoBehaviour
 {
-    const string Token_Client = "45e338e021b8cd1a7889a996a4d5971254b1eb25ce7b122e9bad708a620ff8c2";
-    const string Token_Authorization = "e92d869056d403dc7aacc103940b216202fcbea66fb5c23991584dc91965bd39";
+    const string Token_Client = "d68cdc21fa9a6c6588c9a987404a4050508d34c879d14f5aed613d175dd69d3c";
+    const string Token_Authorization = "c8a5ba0d3119ef879b3b5cb53e61a70041310c4fc4d8e1b0f7f7212fcb6d762a";
 
     const string URL_Finance = "https://apitest.kuveytturk.com.tr/prep/v1/calculations/loan";
 
@@ -240,8 +240,6 @@ public class ApiManager : MonoBehaviour
                 rootObjCurrency = new RootObject_CURRENCY();
 
                 JsonUtility.FromJsonOverwrite(APIResult, rootObjCurrency);
-                Debug.Log("hello guys");
-                Debug.Log(rootObjCurrency.value.name);
             }
 
 

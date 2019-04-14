@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class AccountInfo : MonoBehaviour
 {
     public ApiManager apiManager;
+    private bool isUpdateText = false;
 
     // Start is called before the first frame update
     void Start()
@@ -16,12 +17,13 @@ public class AccountInfo : MonoBehaviour
 
     private void Update()
     {
-        if (!String.IsNullOrEmpty(apiManager.APIResult))
+        if (!String.IsNullOrEmpty(apiManager.APIResult) && !isUpdateText)
         {
             if (apiManager.AppKey == "account")
             {
                 if (apiManager.rootObjAccount != null && apiManager.rootObjAccount.value != null)
                 {
+                    isUpdateText = true;
                     Debug.Log(apiManager.rootObjAccount.value[0].customerName);
                     Text textMeshPro = gameObject.GetComponent<Text>();
                     textMeshPro.text = "Gelecegin Bankaciligina Hosgeldin \n" + apiManager.rootObjAccount.value[0].customerName + "\n" +

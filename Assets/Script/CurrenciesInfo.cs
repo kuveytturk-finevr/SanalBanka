@@ -7,24 +7,26 @@ using UnityEngine.UI;
 public class CurrenciesInfo : MonoBehaviour
 {
     public ApiManager apiManager;
+    private bool isUpdateText = false;
 
     // Update is called once per frame
     void Update()
     {
-        if (!String.IsNullOrEmpty(apiManager.APIResult))
+        if (!String.IsNullOrEmpty(apiManager.APIResult) && !isUpdateText)
         {
             if (apiManager.AppKey == "currency")
             {
-                //Text textMeshPro = gameObject.GetComponent<Text>();
+                Text textMeshPro = gameObject.GetComponent<Text>();
                 if (apiManager.rootObjCurrency != null)
                 {
-                    if (apiManager.rootObjCurrency.results != null)
+                    if (apiManager.rootObjCurrency.value != null)
                     {
-                        //textMeshPro.text = "Gelecegin Bankaciligina Hosgeldin \n" + apiManager.rootObjAccount.value.name + "\n" +
-                        //  "Iban : " + apiManager.rootObjAccount.value.iban + "\n" + "Bakiye : " + apiManager.rootObjAccount.value.avaibleBalance;
-                        for (int i = 0; i < 5; i++)
+                        isUpdateText = true;
+                        textMeshPro.text += "Döviz Kurları\n";
+                        for (int i = 0; i < (apiManager.rootObjCurrency.value.Count > 5 ? 5 : apiManager.rootObjCurrency.value.Count); i++)
                         {
-                            Debug.Log(apiManager.rootObjCurrency.value.name);
+                            textMeshPro.text += "\n" + apiManager.rootObjCurrency.value[i].fxCode + "   " +
+                              apiManager.rootObjCurrency.value[i].buyRate + "   " + apiManager.rootObjCurrency.value[i].sellRate;
                         }
                     }
                 }
