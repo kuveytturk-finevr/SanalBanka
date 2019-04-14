@@ -109,7 +109,7 @@ public class ApiManager : MonoBehaviour
     [System.Serializable]
     public class RootObject_CURRENCY
     {
-        public Value_CURRENCY value;
+        public List<Value_CURRENCY> value;
         public bool success;
         public List<object> results;
     }
@@ -193,12 +193,6 @@ public class ApiManager : MonoBehaviour
 
 
     #endregion
-
-
-
-
-
-
 
     // Start is called before the first frame update
     void Start()
