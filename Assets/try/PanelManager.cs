@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,7 +7,44 @@ using UnityEngine.UI;
 public class PanelManager : MonoBehaviour
 {
 
+    public ApiManager apiManager;
+    private bool isUpdateText = false;
 
+   
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (!String.IsNullOrEmpty(apiManager.APIResult) && !isUpdateText)
+        {
+            if (apiManager.AppKey == "finance")
+            {
+                if (apiManager.rootObjFinance != null && apiManager.rootObjFinance.value != null)
+                {
+                    isUpdateText = true;
+
+                    CreditResponse CR = new CreditResponse {
+                        Interest = (float)apiManager.rootObjFinance.value.monthlyProfitRate, //faiz oranı
+                        InterestCost = (float)apiManager.rootObjFinance.value.totalInstallmentAmount-apiManager.rootObjFinance.value.fundingAmount,
+                        NetCost = apiManager.rootObjFinance.value.fundingAmount, //çekmek istediğim
+                        
+                        PaymentDuration = apiManager.rootObjFinance.value.installmentCount, //kaç ay ödeceğim
+                        WholeCreditCost = (float)apiManager.rootObjFinance.value.totalInstallmentAmount //ödeceğim para
+
+                    };
+                    FillCreditResponsePanel(CR);
+
+                    HideCreditRequestPanel();
+                    
+
+                }
+            }
+        }
+        else if(!isUpdateText)
+        {
+            Debug.Log("I'm still waiting");
+        }
+    }
     public GameObject HomeInfoPanel;
     public GameObject CreditRequestPanel;
     public GameObject CreditResponsePanel;
@@ -14,15 +52,10 @@ public class PanelManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        apiManager = GameObject.FindObjectOfType<ApiManager>();
         HomeInfoPanel = transform.GetChild(0).gameObject;
         CreditRequestPanel = transform.GetChild(1).gameObject;
         CreditResponsePanel = transform.GetChild(2).gameObject;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
 
@@ -38,24 +71,29 @@ public class PanelManager : MonoBehaviour
         ShowHomeInfoPanel();
     }
 
-   public void FillCreditResponsePanel(CreditResponse CreditResponse)
+
+
+    public void FillCreditResponsePanel(CreditResponse CreditResponse)
     {
         CreditResponsePanel.transform.Find("WholeCreditCost").GetComponent<Text>().text = CreditResponse.WholeCreditCost.ToString();
         CreditResponsePanel.transform.Find("NetCost").GetComponent<Text>().text = CreditResponse.NetCost.ToString();
         CreditResponsePanel.transform.Find("InterestCost").GetComponent<Text>().text = CreditResponse.InterestCost.ToString();
         CreditResponsePanel.transform.Find("Interest").GetComponent<Text>().text = CreditResponse.Interest.ToString();
-        CreditResponsePanel.transform.Find("PaymentCount").GetComponent<Text>().text = CreditResponse.PaymentCount.ToString();
         CreditResponsePanel.transform.Find("PaymentDuration").GetComponent<Text>().text = CreditResponse.PaymentDuration.ToString();
+
+
+        ShowCreditResponsePanel();
     }
 
-    void GetCreditRequestValues()
+   public void GetCreditRequestValues()
     {
         CreditRequest CR = new CreditRequest
         {
             TotalAmount = CreditRequestPanel.transform.Find("Amount").GetComponent<SliderManager>().GetValue().ToString(),
          PaymentDuration    = CreditRequestPanel.transform.Find("Months").GetComponent<SliderManager>().ToString()
         };
-
+        isUpdateText = false;
+        apiManager.StartFinance("12", "1000");//CR.PaymentDuration, CR.TotalAmount);
         //send webrequest
     }
 
@@ -83,6 +121,7 @@ public class PanelManager : MonoBehaviour
     {
 
         CreditRequestPanel.transform.Find("Amount").GetComponent<SliderManager>().SetValue(HouseCost);
+        CreditRequestPanel.transform.Find("Amount").GetComponent<SliderManager>().MaxVal = HouseCost;
         CreditRequestPanel.transform.Find("Months").GetComponent<SliderManager>().SetValue(12);
         ExitFromHouseInfo();
         CreditRequestPanel.SetActive(true);
@@ -101,12 +140,9 @@ public class PanelManager : MonoBehaviour
         HideCreditRequestPanel();
 
         GetCreditRequestValues();
-        CreditResponse CreditResponse = new CreditResponse {
-
-
-        };//apiden çekilecek
+//apiden çekilecek
         //FillCreditResponsePanel(CreditResponse);
-        CreditResponsePanel.SetActive(true);
+        CreditResponsePanel.SetActive(false);
     }
     public void HideCreditResponsePanel()
     {

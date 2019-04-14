@@ -77,6 +77,8 @@ public class Home : MonoBehaviour, IMixedRealityFocusHandler, IMixedRealityPoint
     // Start is called before the first frame update
     void Start()
     {
+        //sceneCamera = GameObject.FindObjectOfType<Camera>();
+        sceneCamera = Camera.main;
         HomeInfoPanel = PanelKabuk.transform.GetChild(0).gameObject;
         CreditRequestPanel = PanelKabuk.transform.GetChild(1).gameObject;
         CreditResponsePanel = PanelKabuk.transform.GetChild(2).gameObject;
@@ -179,7 +181,7 @@ public class Home : MonoBehaviour, IMixedRealityFocusHandler, IMixedRealityPoint
         Debug.Log(HomeInfoPanel.transform.parent.gameObject.name);
         if (!PanelOn) {
 
-           GameObject GO =  Instantiate(PanelKabuk, sceneCamera.transform.GetChild(0).position, sceneCamera.transform.GetChild(0).rotation);
+           GameObject GO =  Instantiate(PanelKabuk, sceneCamera.transform.GetChild(0));
 
             GO.GetComponent<PanelManager>().FillHomeInfoPanel(MyHomeInfo);
             PanelOn = true;

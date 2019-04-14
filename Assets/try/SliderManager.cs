@@ -17,7 +17,7 @@ public class SliderManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SetValue(Int32.Parse(Value.GetComponent<Text>().text));
+        SetValue(0);
     }
 
 

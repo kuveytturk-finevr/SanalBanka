@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae63525db704d374596b824a0a007dde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  apiManager: {fileID: 0}
   HomeInfoPanel: {fileID: 1336627340414686828}
   CreditRequestPanel: {fileID: 554596462050085204}
   CreditResponsePanel: {fileID: 6615240415236614179}
@@ -123,6 +124,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4951145648565700699, guid: c0f6733f5e1c8274088eb08360da4ff0,
         type: 3}
+      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4951145648565700699, guid: c0f6733f5e1c8274088eb08360da4ff0,
+        type: 3}
       propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2275487340990751599}
@@ -134,7 +140,7 @@ PrefabInstance:
     - target: {fileID: 4951145648565700699, guid: c0f6733f5e1c8274088eb08360da4ff0,
         type: 3}
       propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ShowCreditResponsePanel
+      value: HideCreditRequestPanel
       objectReference: {fileID: 0}
     - target: {fileID: 4951145648565700699, guid: c0f6733f5e1c8274088eb08360da4ff0,
         type: 3}
@@ -270,7 +276,7 @@ PrefabInstance:
     - target: {fileID: 122535383951867263, guid: f6873a034ab1be44b91d234bd3427897,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 118597872333075251, guid: f6873a034ab1be44b91d234bd3427897,
         type: 3}
@@ -392,6 +398,11 @@ PrefabInstance:
       propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 5494300008126086730, guid: f6873a034ab1be44b91d234bd3427897,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.1761
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f6873a034ab1be44b91d234bd3427897, type: 3}
 --- !u!1 &6615240415236614179 stripped
@@ -421,7 +432,7 @@ PrefabInstance:
     - target: {fileID: 9133167733070295704, guid: 9a8eb05aef4d8f8429e68af64090f821,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9126978691055533268, guid: 9a8eb05aef4d8f8429e68af64090f821,
         type: 3}
@@ -502,6 +513,11 @@ PrefabInstance:
         type: 3}
       propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
+      objectReference: {fileID: 2275487340990751599}
+    - target: {fileID: 8893047746221521070, guid: 9a8eb05aef4d8f8429e68af64090f821,
+        type: 3}
+      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: QuitHouse
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9a8eb05aef4d8f8429e68af64090f821, type: 3}

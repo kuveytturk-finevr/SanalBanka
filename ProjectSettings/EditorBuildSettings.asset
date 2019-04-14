@@ -6,14 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/VRSampleScenes/Scenes/Intro.unity
+    path: Assets/Scene/WelcomeBank.unity
+    guid: 2e0f6b54bc4c2134b8fd16136cb25800
   - enabled: 1
-    path: Assets/VRSampleScenes/Scenes/MainMenu.unity
-  - enabled: 1
-    path: Assets/VRSampleScenes/Scenes/Maze.unity
-  - enabled: 1
-    path: Assets/VRSampleScenes/Scenes/Flyer.unity
-  - enabled: 1
-    path: Assets/VRSampleScenes/Scenes/Shooter360.unity
-  - enabled: 1
-    path: Assets/VRSampleScenes/Scenes/Shooter180.unity
+    path: Assets/Scene/CityScene.unity
+    guid: 738d7f580cc606a4c9579cd7a63bc204
+  m_configObjects: {}

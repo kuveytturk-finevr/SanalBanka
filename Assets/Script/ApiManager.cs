@@ -10,8 +10,8 @@ using System.Threading;
 
 public class ApiManager : MonoBehaviour
 {
-    const string Token_Client = "93dc8c5e1072b8417e23663463fb629071a86b0d76d8adc8b048f50cb2fb954d";
-    const string Token_Authorization = "ac4d9d6da3f386375e11d29dae416a73c059bfa41acb3a04018040eec3943512";
+    const string Token_Client = "78d0c69cdab2374216ec82251acec834ff8682aff301f223827f9ecc1e8914f0";
+    const string Token_Authorization = "d5273b0974e18b867b91d28fbf9d2c48c9575d29e407a48ef964aa73e2d4620c";
 
     const string URL_Finance = "https://apitest.kuveytturk.com.tr/prep/v1/calculations/loan";
 
