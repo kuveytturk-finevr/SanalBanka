@@ -26,9 +26,9 @@ public class AccountInfo : MonoBehaviour
                     isUpdateText = true;
                     Debug.Log(apiManager.rootObjAccount.value[0].customerName);
                     Text textMeshPro = gameObject.GetComponent<Text>();
-                    textMeshPro.text = "Gelecegin Bankaciligina Hosgeldin \n" + apiManager.rootObjAccount.value[0].customerName + "\n" +
+                    textMeshPro.text = "\n" + apiManager.rootObjAccount.value[0].customerName + "\n" +
                     "Iban : " + apiManager.rootObjAccount.value[0].iban + "\n" + "Bakiye : " + apiManager.rootObjAccount.value[0].avaibleBalance;
-                    //apiManager.StartCurrency();
+                    apiManager.StartCurrency();
                 }
             }
         }

@@ -23,10 +23,14 @@ public class CurrenciesInfo : MonoBehaviour
                     {
                         isUpdateText = true;
                         textMeshPro.text += "Döviz Kurları\n";
-                        for (int i = 0; i < (apiManager.rootObjCurrency.value.Count > 5 ? 5 : apiManager.rootObjCurrency.value.Count); i++)
+                        for (int i = 0; i < apiManager.rootObjCurrency.value.Count; i++)
                         {
-                            textMeshPro.text += "\n" + apiManager.rootObjCurrency.value[i].fxCode + "   " +
-                              apiManager.rootObjCurrency.value[i].buyRate + "   " + apiManager.rootObjCurrency.value[i].sellRate;
+                            string fxCode = apiManager.rootObjCurrency.value[i].fxCode;
+                            if (fxCode.Equals("GBP") || fxCode.Equals("USD") || fxCode.Equals("EUR") || fxCode.Equals("AUS") || fxCode.Equals("KWD"))
+                            {
+                                textMeshPro.text += "\n" + apiManager.rootObjCurrency.value[i].fxCode + "   " +
+                                  apiManager.rootObjCurrency.value[i].buyRate + "   " + apiManager.rootObjCurrency.value[i].sellRate;
+                            }
                         }
                     }
                 }

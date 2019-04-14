@@ -10,8 +10,8 @@ using System.Threading;
 
 public class ApiManager : MonoBehaviour
 {
-    const string Token_Client = "d68cdc21fa9a6c6588c9a987404a4050508d34c879d14f5aed613d175dd69d3c";
-    const string Token_Authorization = "c8a5ba0d3119ef879b3b5cb53e61a70041310c4fc4d8e1b0f7f7212fcb6d762a";
+    const string Token_Client = "93dc8c5e1072b8417e23663463fb629071a86b0d76d8adc8b048f50cb2fb954d";
+    const string Token_Authorization = "ac4d9d6da3f386375e11d29dae416a73c059bfa41acb3a04018040eec3943512";
 
     const string URL_Finance = "https://apitest.kuveytturk.com.tr/prep/v1/calculations/loan";
 
@@ -256,6 +256,12 @@ public class ApiManager : MonoBehaviour
     {
         ResetAPIConfig("currency");
         StartCoroutine(GET(URL_Currency, true));
+    }
+
+    public void StartFinance(String vade, String tutar)
+    {
+        ResetAPIConfig("finance");
+        StartCoroutine(POST(String.Format(TemplateFinance, "GMENKULKONUTYENI", vade, tutar, "false"), URL_Finance, true));
     }
 
     public void ResetAPIConfig(string key)
